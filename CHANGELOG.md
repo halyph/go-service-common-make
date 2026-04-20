@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-04-20
+
 ### Added
 - `ensure-tools` target for optimized tool installation (skips if already installed)
 - `.tools/.installed` marker file to track tool installation status
@@ -34,5 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `make clean` now removes all directories in `GENERATED_DIRS`
 - Extensibility: repos can add custom dirs with `GENERATED_DIRS += protos stubs`
 
-[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/halyph/go-service-common-make/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/halyph/go-service-common-make/releases/tag/v1.0.0

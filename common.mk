@@ -1,5 +1,4 @@
 # Common Makefile for Go Projects
-# Version: 1.0.0
 #
 # This file is automatically downloaded from go-service-common-make repository.
 # This file contains common targets and patterns for Go projects.
