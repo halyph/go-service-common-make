@@ -3,24 +3,16 @@
 
 ## BEGIN of Tools installation
 
-.PHONY: download
-download: ## Download go.mod dependencies
-	@echo "Downloading go.mod dependencies"
+$(TOOLS_BIN)/.installed: $(TOOLS)/tools.go | $(TOOLS_BIN)
+	@echo "Installing tools from $(TOOLS)/tools.go"
 	@go mod download
+	@cd $(TOOLS) && cat tools.go | grep _ | awk -F'"' '{print $$2}' | GOBIN=$(TOOLS_BIN) xargs -tI % go install %
+	@touch $(TOOLS_BIN)/.installed
 
 .PHONY: install
-install: download ## Install development tools locally
-	@echo "Installing tools from $(TOOLS)/tools.go"
-	@cd $(TOOLS) && cat tools.go | grep _ | awk -F'"' '{print $$2}' | GOBIN=$(BIN) xargs -tI % go install %
-	@touch $(BIN)/.installed
+install: $(TOOLS_BIN)/.installed ## Install development tools (only if tools.go changed or missing)
 
-.PHONY: ensure-tools
-ensure-tools: ## Ensure tools are installed (runs install only if needed)
-	@if [ ! -f $(BIN)/.installed ]; then \
-		$(MAKE) install; \
-	fi
-
-$(BIN):
-	@mkdir -p $(BIN)
+$(TOOLS_BIN):
+	@mkdir -p $(TOOLS_BIN)
 
 ## END of Tools installation

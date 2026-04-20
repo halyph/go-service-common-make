@@ -6,7 +6,8 @@ Shared Makefile components providing standardized build, test, and deployment wo
 
 ## Requirements
 
-**Git Clone Access:** Users must have git clone access to this repository (`git@github.com:halyph/go-service-common-make.git`). The auto-download mechanism uses `git clone` to fetch go-service-common-make files during the first `make` invocation.
+**Git Clone Access:** Users must have git clone access to this repository (`git@github.com:halyph/go-service-common-make.git`).  
+The auto-download mechanism uses `git clone` to fetch go-service-common-make files during the first `make` invocation.
 
 If you don't have access, request it from the project maintainers.
 
@@ -47,7 +48,7 @@ See [`example-repo-Makefile`](example-repo-Makefile) for complete template with 
 
 **Run `make help` to see all available targets.**
 
-**Note:** Targets like `test`, `generate`, `run-lint` automatically install tools when needed via `ensure-tools`. Use `make install` to force reinstall, or `make clean` to reset.
+**Note:** Targets like `test`, `generate`, `run-lint` automatically install tools when needed. Tools are only reinstalled if `tools.go` changes or `.tools/.installed` marker is missing.
 
 **Documentation:**
 - [common.build.mk](common.build.mk) - Build targets
@@ -72,9 +73,10 @@ APPLICATION := your-service-name
 - Override any target (e.g., `goldenfiles` for custom paths)
 
 **Tool installation:**
-- Tools are auto-installed when needed (via `ensure-tools` dependency)
-- Uses `.tools/.installed` marker to skip reinstall (optimization)
-- Run `make install` to force reinstall, or `make clean` to reset marker
+- Tools are auto-installed when needed (via `install` dependency)
+- Uses `.tools/.installed` marker file and `tools.go` timestamp
+- Only reinstalls if `tools.go` changes or marker is missing
+- Run `make clean` to remove marker and force fresh install
 
 See [`example-repo-Makefile`](example-repo-Makefile) and [common.mk](common.mk) for examples.
 

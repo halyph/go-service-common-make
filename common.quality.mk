@@ -13,13 +13,13 @@ test-generate: install generate git-status test ## Install tools, generate mocks
 test: run-lint run-test ## Run all quality gates (tests, linting, etc.)
 
 .PHONY: run-lint
-run-lint: ensure-tools ## Run golangci-lint
-	$(BIN_PATH) golangci-lint --version
-	$(BIN_PATH) golangci-lint run $(PACKAGES)
+run-lint: install ## Run golangci-lint
+	$(TOOLS_PATH) golangci-lint --version
+	$(TOOLS_PATH) golangci-lint run $(PACKAGES)
 
 .PHONY: fix-lint
-fix-lint: ensure-tools ## Auto-fix linting issues
-	$(BIN_PATH) golangci-lint run --fix $(PACKAGES)
+fix-lint: install ## Auto-fix linting issues
+	$(TOOLS_PATH) golangci-lint run --fix $(PACKAGES)
 
 .PHONY: run-test
 run-test: build-dir ## Run tests
@@ -30,9 +30,9 @@ cover: run-test ## Test and open code coverage report
 	go tool cover -html=$(COVER_FILE)
 
 .PHONY: generate
-generate: ensure-tools ## Generate code and mocks
-	@$(BIN_PATH) go generate ./...
-	@$(BIN_PATH) mockery
+generate: install ## Generate code and mocks
+	@$(TOOLS_PATH) go generate ./...
+	@$(TOOLS_PATH) mockery
 
 .PHONY: git-status
 git-status: ## Check if working directory is clean
@@ -50,7 +50,7 @@ git-status: ## Check if working directory is clean
 
 .PHONY: clean
 clean: ## Clean generated files and build artifacts
-	rm -rfv $(GENERATED_PACKAGES) $(BUILD_PATH) $(BIN)/.installed
+	rm -rfv $(GENERATED_PACKAGES) $(BUILD_PATH) $(TOOLS_BIN)/.installed
 
 .PHONY: clean-common-make
 clean-common-make: ## Remove .common-make directory (forces re-download)

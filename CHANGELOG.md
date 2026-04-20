@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-04-20
+
+### Changed
+- `make install` now uses marker file pattern (only reinstalls if `tools.go` changed or marker missing)
+- Renamed `BIN` → `TOOLS_BIN` for clarity (development tools directory)
+- Renamed `BIN_PATH` → `TOOLS_PATH` for clarity
+
+### Removed
+- `make download` target (redundant, `go mod download` runs inline during install)
+- `make ensure-tools` target (merged into `install` - now both use marker pattern)
+- Version comment from `common.mk` header (git tags are the source of truth)
+
 ## [1.1.0] - 2026-04-20
 
 ### Added
@@ -36,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `make clean` now removes all directories in `GENERATED_DIRS`
 - Extensibility: repos can add custom dirs with `GENERATED_DIRS += protos stubs`
 
-[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/halyph/go-service-common-make/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/halyph/go-service-common-make/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/halyph/go-service-common-make/releases/tag/v1.0.0

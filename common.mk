@@ -52,9 +52,9 @@ CYAN   := $(shell tput -Txterm setaf 6)
 RESET  := $(shell tput -Txterm sgr0)
 
 # Tools configuration
-BIN      := $(shell pwd)/.tools
-TOOLS    := $(shell pwd)/tools
-BIN_PATH := PATH="$(abspath $(BIN)):$$PATH"
+TOOLS_BIN  := $(shell pwd)/.tools
+TOOLS      := $(shell pwd)/tools
+TOOLS_PATH := PATH="$(abspath $(TOOLS_BIN)):$$PATH"
 
 # Set default goal to help (must be set before any targets are defined)
 .DEFAULT_GOAL := help
