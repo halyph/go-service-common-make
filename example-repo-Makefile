@@ -72,6 +72,9 @@ include .common-make/common.mk
 # Example: Override docker platform
 # DOCKER_BUILDX_BUILD_PLATFORM := linux/amd64
 
+# Example: Extend generated code directories (e.g., for protobuf, OpenAPI stubs)
+# GENERATED_DIRS += protos stubs
+
 # ============================================
 # Repository-Specific Targets
 # ============================================

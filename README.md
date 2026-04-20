@@ -75,6 +75,7 @@ APPLICATION := your-service-name
 - `TEST_FLAGS += -tags=integration` - Add integration test tag (or use `:=` for complete override)
 - `LDFLAGS` - Custom linker flags
 - `DOCKER_BUILDX_BUILD_PLATFORM` - Target platforms
+- `GENERATED_DIRS += protos stubs` - Add custom generated code directories
 - Override any target (e.g., `goldenfiles` for custom paths)
 
 See [`example-repo-Makefile`](example-repo-Makefile) and [common.mk](common.mk) for examples.

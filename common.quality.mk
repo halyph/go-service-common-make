@@ -50,7 +50,7 @@ git-status: ## Check if working directory is clean
 
 .PHONY: clean
 clean: ## Clean generated files and build artifacts
-	rm -rfv $(MOCK_PACKAGES) $(GENERATED_PACKAGES) $(BUILD_PATH)
+	rm -rfv $(GENERATED_PACKAGES) $(BUILD_PATH)
 
 .PHONY: clean-common-make
 clean-common-make: ## Remove .common-make directory (forces re-download)
@@ -59,12 +59,17 @@ clean-common-make: ## Remove .common-make directory (forces re-download)
 
 .PHONY: show-generated
 show-generated: ## List all generated code files
-	@echo "📦 Generated code files:"
+	@echo "📦 Generated code files (GENERATED_DIRS=$(GENERATED_DIRS)):"
 	@echo ""
-	@echo "🔸 Mockery (mocks/):"
-	@find . -path "*/mocks/*.go" -type f 2>/dev/null | sed 's/^\.\//  /' || echo "  (none found)"
-	@echo ""
-	@echo "🔸 Goverter (generated/):"
-	@find . -path "*/generated/*.go" -type f 2>/dev/null | sed 's/^\.\//  /' || echo "  (none found)"
+	@for dir in $(GENERATED_DIRS); do \
+		echo "🔸 $$dir/:"; \
+		files=$$(find . -path "*/$$dir/*.go" -type f 2>/dev/null); \
+		if [ -z "$$files" ]; then \
+			echo "  (none found)"; \
+		else \
+			echo "$$files" | sed 's/^\.\//  /'; \
+		fi; \
+		echo ""; \
+	done
 
 ## END of Cleaning

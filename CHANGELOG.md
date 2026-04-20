@@ -7,18 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- `GENERATED_PACKAGES` variable to track goverter-generated code
-- `show-generated` target to list all generated code (mockery + goverter)
-- `make clean` now removes both `mocks/` and `generated/` directories
-
 ## [1.0.0] - 2026-04-20
 
 ### Added
 - Initial release of go-service-common-make
 - Multi-architecture build support (linux/darwin, amd64/arm64)
 - Docker multi-arch build with buildx
-- Tools installation from tools/tools.go
+- Tools installation from tools/tools.go (.tools/ directory)
 - Quality gates: lint, test, generate
 - Section-based colored help system
 - Git clone distribution with SSH support
@@ -27,6 +22,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `clean-common-make` target for version updates
 - Local development support via `LOCAL_COMMON_MAKE` variable
 - `common.*.mk` naming for better file organization
+- `GENERATED_DIRS` variable (default: `mocks generated`) to configure generated code directories
+- `GENERATED_PACKAGES` variable that finds all directories matching `GENERATED_DIRS`
+- `show-generated` target to list all generated code files
+- `make clean` now removes all directories in `GENERATED_DIRS`
+- Extensibility: repos can add custom dirs with `GENERATED_DIRS += protos stubs`
 
 [Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/halyph/go-service-common-make/releases/tag/v1.0.0

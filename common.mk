@@ -21,8 +21,11 @@ BINARIES           := $(shell ls ./cmd 2>/dev/null)
 SOURCES            := $(shell find . -name '*.go' 2>/dev/null)
 MIGRATIONS         := $(shell find ./res/migrations -name '*.sql' 2>/dev/null | grep -v -E " ")
 PACKAGES           := $(shell go list -f '{{.Dir}}' ./... 2>/dev/null | grep -v -E '/(mocks|tools)$$')
-MOCK_PACKAGES      := $(shell find . -name "mocks" -type d 2>/dev/null)
-GENERATED_PACKAGES := $(shell find . -name "generated" -type d 2>/dev/null)
+
+# Generated code directories (can be extended: GENERATED_DIRS += protos stubs)
+GENERATED_DIRS     ?= mocks generated
+GENERATED_PACKAGES := $(shell for dir in $(GENERATED_DIRS); do find . -name "$$dir" -type d 2>/dev/null; done)
+
 DOCKERFILES        := $(wildcard Dockerfile*)
 
 # Build configuration
