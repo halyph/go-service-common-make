@@ -12,6 +12,13 @@ download: ## Download go.mod dependencies
 install: download ## Install development tools locally
 	@echo "Installing tools from $(TOOLS)/tools.go"
 	@cd $(TOOLS) && cat tools.go | grep _ | awk -F'"' '{print $$2}' | GOBIN=$(BIN) xargs -tI % go install %
+	@touch $(BIN)/.installed
+
+.PHONY: ensure-tools
+ensure-tools: ## Ensure tools are installed (runs install only if needed)
+	@if [ ! -f $(BIN)/.installed ]; then \
+		$(MAKE) install; \
+	fi
 
 $(BIN):
 	@mkdir -p $(BIN)

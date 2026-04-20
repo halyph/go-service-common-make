@@ -34,9 +34,9 @@ echo ".common-make/" >> .gitignore
 
 **4. Test:**
 ```bash
-make help    # Auto-downloads go-service-common-make
-make test
-make build.local
+make help         # Auto-downloads go-service-common-make
+make test         # Run lint + tests (auto-installs tools)
+make build.local  # Build binaries
 ```
 
 See [`example-repo-Makefile`](example-repo-Makefile) for complete template with comments.
@@ -45,16 +45,9 @@ See [`example-repo-Makefile`](example-repo-Makefile) for complete template with 
 
 ## Available Targets
 
-Run `make help` to see all available targets.
+**Run `make help` to see all available targets.**
 
-**Common:**
-- `make test` - Run lint + tests
-- `make generate` - Generate mocks and converters
-- `make show-generated` - List all generated code files
-- `make clean` - Remove generated code and build artifacts
-- `make build.local` - Build for current OS
-- `make build.linux` - Build for linux (amd64 + arm64)
-- `make docker.push` - Build and push multi-arch images
+**Note:** Targets like `test`, `generate`, `run-lint` automatically install tools when needed via `ensure-tools`. Use `make install` to force reinstall, or `make clean` to reset.
 
 **Documentation:**
 - [common.build.mk](common.build.mk) - Build targets
@@ -74,9 +67,14 @@ APPLICATION := your-service-name
 **Optional overrides (after include):**
 - `TEST_FLAGS += -tags=integration` - Add integration test tag (or use `:=` for complete override)
 - `LDFLAGS` - Custom linker flags
-- `DOCKER_BUILDX_BUILD_PLATFORM` - Target platforms
-- `GENERATED_DIRS += protos stubs` - Add custom generated code directories
+- `DOCKER_BUILDX_BUILD_PLATFORM` - Target platforms (default: `linux/amd64,linux/arm64`)
+- `GENERATED_DIRS += protos stubs` - Add custom generated code directories (default: `mocks generated`)
 - Override any target (e.g., `goldenfiles` for custom paths)
+
+**Tool installation:**
+- Tools are auto-installed when needed (via `ensure-tools` dependency)
+- Uses `.tools/.installed` marker to skip reinstall (optimization)
+- Run `make install` to force reinstall, or `make clean` to reset marker
 
 See [`example-repo-Makefile`](example-repo-Makefile) and [common.mk](common.mk) for examples.
 

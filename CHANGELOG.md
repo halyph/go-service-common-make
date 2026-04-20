@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `ensure-tools` target for optimized tool installation (skips if already installed)
+- `.tools/.installed` marker file to track tool installation status
+- `run-lint`, `fix-lint`, and `generate` now use `ensure-tools` dependency (faster subsequent runs)
+- `make clean` now removes `.tools/.installed` marker
+
 ## [1.0.0] - 2026-04-20
 
 ### Added
