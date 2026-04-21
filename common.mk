@@ -11,9 +11,7 @@ $(error APPLICATION variable must be set in your Makefile before including commo
 endif
 
 # Common variables with sensible defaults (can be overridden)
-VERSION         ?= latest
-TEAM            ?= myteam
-DOCKER_REGISTRY ?= registry.example.com
+VERSION ?= latest
 
 # Auto-detect binaries, sources, packages
 BINARIES           := $(shell ls ./cmd 2>/dev/null)
@@ -40,10 +38,6 @@ BUILD_FLAGS    := -mod=readonly -v
 UNAME_S := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 UNAME_M := $(shell uname -m)
 GOARCH  := $(if $(filter x86_64,$(UNAME_M)),amd64,$(if $(filter arm64,$(UNAME_M)),arm64,$(UNAME_M)))
-
-# Docker buildx configuration
-DOCKER_BUILDX_CREATE_OPTS    ?=
-DOCKER_BUILDX_BUILD_PLATFORM ?= linux/amd64,linux/arm64
 
 # Colors for output
 GREEN  := $(shell tput -Txterm setaf 2)

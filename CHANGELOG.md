@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-04-21
+
+### Added
+- Simplified Docker support for open-source projects and Docker Hub
+- New variables: `DOCKER_USERNAME`, `DOCKER_IMAGE`, `DOCKER_TAG`
+- `make docker` - builds all Dockerfiles locally (plain docker, works with Colima)
+- `make docker.push` - pushes to Docker Hub
+- Image naming: `username/app:tag` (e.g., `oivasiv/go-service-blueprint:latest`)
+
+### Changed
+- Docker builds use plain `docker build` instead of buildx (better compatibility)
+- Docker targets now build linux/amd64 for local testing (Colima, Docker Desktop)
+
+### Removed
+- Company-specific docker variables: `TEAM`, `DOCKER_REGISTRY` (replaced with `DOCKER_USERNAME`, `DOCKER_IMAGE`)
+- Buildx targets: `buildx-init`, `docker.build` (overly complex, not needed for local dev)
+- Buildx variables: `DOCKER_BUILDX_CREATE_OPTS`, `DOCKER_BUILDX_BUILD_PLATFORM`
+
 ## [1.1.1] - 2026-04-20
 
 ### Changed
@@ -48,7 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `make clean` now removes all directories in `GENERATED_DIRS`
 - Extensibility: repos can add custom dirs with `GENERATED_DIRS += protos stubs`
 
-[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/halyph/go-service-common-make/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/halyph/go-service-common-make/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/halyph/go-service-common-make/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/halyph/go-service-common-make/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/halyph/go-service-common-make/releases/tag/v1.0.0
