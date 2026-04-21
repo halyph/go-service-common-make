@@ -75,13 +75,6 @@ APPLICATION := your-service-name
 - Only reinstalls if `tools.go` changes or marker is missing
 - Run `make clean` to remove marker and force fresh install
 
-**Docker:**
-- `DOCKER_USERNAME` - Docker Hub username (defaults to `$USER`)
-- `DOCKER_IMAGE` - Full image name (defaults to `$USER/$APPLICATION`)
-- `DOCKER_TAG` - Image tag (defaults to `$VERSION`)
-- Works with plain `docker build` (no buildx required)
-- Pushes to Docker Hub by default
-
 See [`example-repo-Makefile`](example-repo-Makefile) and [common.mk](common.mk) for examples.
 
 ---
