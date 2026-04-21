@@ -4,12 +4,9 @@ Shared Makefile components providing standardized build, test, and deployment wo
 
 ---
 
-## Requirements
+## Example
 
-**Git Clone Access:** Users must have git clone access to this repository (`git@github.com:halyph/go-service-common-make.git`).  
-The auto-download mechanism uses `git clone` to fetch go-service-common-make files during the first `make` invocation.
-
-If you don't have access, request it from the project maintainers.
+See [go-service-blueprint](https://github.com/halyph/go-service-blueprint) for a complete example project using go-service-common-make.
 
 ---
 
@@ -26,7 +23,7 @@ cp ../go-service-common-make/example-repo-Makefile Makefile
 
 - Set `APPLICATION := your-service-name`
 - Set `COMMON_MAKE_VERSION` to [latest tag](https://github.com/halyph/go-service-common-make/tags)
-- Verify `COMMON_MAKE_REPO` SSH URL is correct
+- Set `COMMON_MAKE_REPO` (defaults to `git@github.com:halyph/go-service-common-make.git`)
 
 **3. Add to .gitignore:**
 ```bash
