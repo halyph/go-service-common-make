@@ -1,5 +1,8 @@
 # build.mk - Multi-architecture Go build targets
-# Part of go-service-common-make
+# DO NOT EDIT - Part of go-service-common-make
+#
+# To contribute changes, please submit a PR to:
+# https://github.com/halyph/go-service-common-make
 
 ## BEGIN of Building binaries
 

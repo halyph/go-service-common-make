@@ -1,6 +1,9 @@
 # Common Makefile for Go Projects
+# DO NOT EDIT - This file is automatically downloaded from go-service-common-make
 #
-# This file is automatically downloaded from go-service-common-make repository.
+# To contribute changes, please submit a PR to:
+# https://github.com/halyph/go-service-common-make
+#
 # This file contains common targets and patterns for Go projects.
 # Include this in your repo-specific Makefile with:
 #   include .common-make/common.mk
