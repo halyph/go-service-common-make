@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/logo.jpg" alt="go-service-common-make" width="256">
+</p>
+
 # Common Makefile for Go Projects
 
 Shared Makefile components providing standardized build, test, and deployment workflows for Go repositories.
